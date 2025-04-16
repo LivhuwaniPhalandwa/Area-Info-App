@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  
   <ion-item>
     <ion-input [(ngModel)]="city" placeholder="Enter city name"></ion-input>
     
@@ -20,6 +21,12 @@
         <p>Temperature: {{ weatherData.main.temp }}°C</p>
         <p>Condition: {{ weatherData.weather[0].description }}</p>
         <p>Wind Speed: {{ weatherData.wind.speed }} m/s</p>
+         <!-- 🌤️ Weather Icon -->
+  <img
+  [src]="'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'"
+  alt="Weather icon"
+  style="width: 80px; height: 80px; margin-top: 10px;"
+/>
         <ion-button color="success" (click)="saveToFavorites()">Save to Favorites</ion-button>
       </ion-card-content>
     </ion-card>
