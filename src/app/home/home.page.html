@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Area Info Lookup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input [(ngModel)]="city" placeholder="Enter city name"></ion-input>
+    
+  </ion-item>
+  <ion-button expand="full" (click)="getWeather()">Get Weather</ion-button>
+
+  <div *ngIf="weatherData">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ weatherData.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Temperature: {{ weatherData.main.temp }}°C</p>
+        <p>Condition: {{ weatherData.weather[0].description }}</p>
+        <p>Wind Speed: {{ weatherData.wind.speed }} m/s</p>
+        <ion-button color="success" (click)="saveToFavorites()">Save to Favorites</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Favorites</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let fav of favorites" (click)="getWeather(fav)">
+      {{ fav }}
+    </ion-item>
+  
+  </ion-list>
+  <ion-button *ngIf="favorites.length > 0" color="danger" (click)="clearFavorites()">
+    Clear Favorites
+  </ion-button>
+  
+  
+</ion-content>
